@@ -4,6 +4,8 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CheckerPlugin = require("awesome-typescript-loader").CheckerPlugin;
 const bundleOutputDir = "./wwwroot/dist";
 
+const extractLESS = new ExtractTextPlugin("stylesheets/[name].css");
+
 module.exports = env => {
   const isDevBuild = !(env && env.prod);
 
@@ -53,24 +55,16 @@ module.exports = env => {
             use: {
               loader: "file-loader",
               options: {
-                name: "fonts/[name].[ext]",
-                //outputPath: "fonts/"
+                name: "fonts/[name].[ext]" //outputPath: "fonts/"
               }
             }
           },
           {
             test: /\.less$/,
-            use: [
-              {
-                loader: "style-loader"
-              },
-              {
-                loader: "css-loader"
-              },
-              {
-                loader: "less-loader"
-              }
-            ]
+            use: extractLESS.extract({
+              use: ["css-loader", "less-loader"],
+              fallback: "style-loader"
+            })
           },
           {
             test: /\.(png|jpg|jpeg|gif|svg)$/,
@@ -94,6 +88,7 @@ module.exports = env => {
         publicPath: "dist/"
       },
       plugins: [
+        extractLESS,
         new CheckerPlugin(),
         new webpack.DefinePlugin({
           "process.env": {

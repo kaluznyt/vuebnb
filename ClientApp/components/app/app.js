@@ -1,8 +1,8 @@
 import Vue from "vue";
 import headerImg from "../../../Images/header.jpg";
 import logo from "../../../Images/logo.png";
-import data from "../../../sample/data.js";
-import style from "app.less";
+import data from "../../../sample/data";
+import style from "app";
 
 export default {
   data: function() {
