@@ -18,21 +18,49 @@ module.exports = env => {
           {
             test: /\.vue\.html$/,
             include: /ClientApp/,
-            loader: "vue-loader",
-            options: {
-              loaders: { js: "awesome-typescript-loader?silent=true" }
+            use: {
+              loader: "vue-loader",
+              options: {
+                loaders: {
+                  js: {
+                    loader: "awesome-typescript-loader",
+                    options: { silent: true }
+                  }
+                }
+              }
             }
           },
           {
             test: /\.ts$/,
             include: /ClientApp/,
-            use: "awesome-typescript-loader?silent=true"
+            use: [
+              {
+                loader: "awesome-typescript-loader",
+                options: { silent: true }
+              }
+            ]
           },
           {
             test: /\.css$/,
             use: isDevBuild
               ? ["style-loader", "css-loader"]
-              : ExtractTextPlugin.extract({ use: "css-loader?minimize" })
+              : ExtractTextPlugin.extract({
+                  use: { loader: "css-loader", options: { minimize: true } }
+                })
+          },
+          {
+            test: /\.less$/,
+            use: [
+              {
+                loader: "style-loader"
+              },
+              {
+                loader: "css-loader"
+              },
+              {
+                loader: "less-loader"
+              }
+            ]
           },
           {
             test: /\.(png|jpg|jpeg|gif|svg)$/,

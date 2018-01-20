@@ -2,6 +2,7 @@ import Vue from "vue";
 import headerImg from "../../../Images/header.jpg";
 import logo from "../../../Images/logo.png";
 import data from "../../../sample/data.js";
+import style from "app.less";
 
 export default {
   data: function() {

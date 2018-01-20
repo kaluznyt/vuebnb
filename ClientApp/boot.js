@@ -1,10 +1,10 @@
-import "./css/site.css";
 import Vue from "vue";
 import fav from "../Images/favicon.ico";
+import "./css/site.less";
 import "font-awesome-webpack";
-import 'opensans-npm-webfont';
+//import 'opensans-npm-webfont';
 
 new Vue({
   el: "#app",
-  render: h => h(require("./components/app/app.vue.html"))
+  render: app => app(require("./components/app/app.vue.html"))
 });
