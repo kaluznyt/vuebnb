@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using Newtonsoft.Json;
 
@@ -92,12 +93,20 @@ namespace vuebnb.Models {
             }
         }
 
+        [JsonProperty ("headerImage")]
+        public string HeaderImage {
+            get {
+                var images = Images.ToList ();
+                return images[new System.Random ().Next (0, images.Count ())];
+            }
+        }
+
         public IEnumerable<string> Images {
             get {
                 var i = 0;
 
                 while (i++ < 4) {
-                    yield return $"images/{this.Id}/Image_{i}.jpg";
+                    yield return $"dist/images/listings/{this.Id}/Image_{i}.jpg";
                 }
             }
         }

@@ -2,6 +2,7 @@ const path = require("path");
 const webpack = require("webpack");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CheckerPlugin = require("awesome-typescript-loader").CheckerPlugin;
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 const bundleOutputDir = "./wwwroot/dist";
 
 const extractLESS = new ExtractTextPlugin("stylesheets/[name].css");
@@ -69,8 +70,8 @@ module.exports = env => {
           {
             test: /\.(png|jpg|jpeg|gif|svg)$/,
             use: {
-              loader: "url-loader",
-              options: { limit: 8000, name: "[name].[ext]" }
+              loader: "file-loader",
+              options: { name: "[name].[ext]" }
             }
           },
           {
@@ -88,6 +89,7 @@ module.exports = env => {
         publicPath: "dist/"
       },
       plugins: [
+        new CopyWebpackPlugin([{ from: "./Images/listings", to: "images/listings" }]),
         extractLESS,
         new CheckerPlugin(),
         new webpack.DefinePlugin({
