@@ -1,21 +1,20 @@
 import Vue from "vue";
 import headerImg from "../../../Images/header.jpg";
 import logo from "../../../Images/logo.png";
-import data from "../../../sample/data";
+//import sampleData from "../../../sample/data";
 import style from "app";
 
+const model = window.vuebnbListingModel;
+
+const data = function() {
+  return Object.assign(model, {
+    headerImg: headerImg,
+    logo: logo,
+    contracted: true,
+    modalOpen: false
+  });
+};
+
 export default {
-  data: function() {
-    return {
-      headerImg: headerImg,
-      logo: logo,
-      title: data.title,
-      address: data.address,
-      about: data.about,
-      amenities: data.amenities,
-      prices: data.prices,
-      contracted: true,
-      modalOpen: false
-    };
-  }
+  data: data
 };

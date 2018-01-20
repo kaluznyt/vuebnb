@@ -1,0 +1,15 @@
+@model vuebnb.Models.Listing
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<script>
+   window.vuebnbListingModel =  @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model) as string)
+</script>
+
+<div id='app'>Loading...</div>
+
+@section scripts {
+    <script src="~/dist/main.js" asp-append-version="true"></script>
+}
