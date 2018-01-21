@@ -14,7 +14,12 @@ module.exports = env => {
     {
       stats: { modules: false },
       context: __dirname,
-      resolve: { extensions: [".js", ".ts"] },
+      resolve: {
+        extensions: [".js", ".ts"],
+        alias: {
+          vue: "vue/dist/vue.js"
+        }
+      },
       entry: { main: "./ClientApp/boot.js" },
       module: {
         rules: [
@@ -43,13 +48,17 @@ module.exports = env => {
               }
             ]
           },
+          // {
+          //   test: /\.css$/,
+          //   use: isDevBuild
+          //     ? ["style-loader", "css-loader"]
+          //     : ExtractTextPlugin.extract({
+          //         use: { loader: "css-loader", options: { minimize: true } }
+          //       })
+          // },
           {
-            test: /\.css$/,
-            use: isDevBuild
-              ? ["style-loader", "css-loader"]
-              : ExtractTextPlugin.extract({
-                  use: { loader: "css-loader", options: { minimize: true } }
-                })
+            test: /\.(less|css)$/,
+            use: extractLESS.extract(["css-loader", "less-loader"])
           },
           {
             test: /.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
@@ -59,13 +68,6 @@ module.exports = env => {
                 name: "fonts/[name].[ext]" //outputPath: "fonts/"
               }
             }
-          },
-          {
-            test: /\.less$/,
-            use: extractLESS.extract({
-              use: ["css-loader", "less-loader"],
-              fallback: "style-loader"
-            })
           },
           {
             test: /\.(png|jpg|jpeg|gif|svg)$/,
@@ -89,7 +91,9 @@ module.exports = env => {
         publicPath: "dist/"
       },
       plugins: [
-        new CopyWebpackPlugin([{ from: "./Images/listings", to: "images/listings" }]),
+        // new CopyWebpackPlugin([
+        //   { from: "./Images/listings", to: "images/listings" }
+        // ]),
         extractLESS,
         new CheckerPlugin(),
         new webpack.DefinePlugin({

@@ -36,7 +36,7 @@ namespace vuebnb {
                 app.UseExceptionHandler ("/Home/Error");
             }
 
-            app.UseStaticFiles();
+            app.UseStaticFiles ();
 
             app.UseMvc (routes => {
                 routes.MapRoute (

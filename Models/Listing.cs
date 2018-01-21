@@ -106,7 +106,7 @@ namespace vuebnb.Models {
                 var i = 0;
 
                 while (i++ < 4) {
-                    yield return $"dist/images/listings/{this.Id}/Image_{i}.jpg";
+                    yield return $"images/listings/{this.Id}/Image_{i}.jpg";
                 }
             }
         }
