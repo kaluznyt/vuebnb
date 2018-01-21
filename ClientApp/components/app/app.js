@@ -1,13 +1,11 @@
 import Vue from "vue";
-//import headerImg from "../../../Images/header.jpg";
 import logo from "../../../wwwroot/Images/logo.png";
-//import sampleData from "../../../sample/data";
+import ImageCarousel from "../ImageCarousel.vue";
 
 const model = window.vuebnbListingModel;
 
-const data = function() {
+const data = function () {
   return Object.assign(model, {
-    //  headerImg: headerImg,
     logo: logo,
     contracted: true,
     modalOpen: false
@@ -15,5 +13,8 @@ const data = function() {
 };
 
 export default {
-  data: data
+  data: data,
+  components: {
+    ImageCarousel
+  }
 };

@@ -1,4 +1,6 @@
 {
   "jshint.enable": false,
-  "editor.formatOnSave": false
+  "editor.formatOnSave": false,
+  "vetur.format.defaultFormatter.html": "js-beautify-html",
+  "html.format.wrapAttributes": "force-aligned"
 }

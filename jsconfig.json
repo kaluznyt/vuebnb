@@ -1,0 +1,6 @@
+{
+  "include": [
+    "./ClientApp/**/*"
+  ],
+  "allowJs": true,
+}
