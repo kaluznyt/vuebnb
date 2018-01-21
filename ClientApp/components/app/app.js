@@ -2,7 +2,6 @@ import Vue from "vue";
 //import headerImg from "../../../Images/header.jpg";
 import logo from "../../../wwwroot/Images/logo.png";
 //import sampleData from "../../../sample/data";
-import style from "./app.less";
 
 const model = window.vuebnbListingModel;
 

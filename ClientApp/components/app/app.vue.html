@@ -51,7 +51,7 @@
             <div id="modal" v-bind:class="{ show : modalOpen }">
                 <button v-on:click="modalOpen = false" class="modal-close"> &times; </button>
                 <div class="modal-content">
-                    <image-carousel></image-carousel>
+                    <image-carousel :images="Images"></image-carousel>
                     <!-- <img :src="headerImage" /> -->
                 </div>
             </div>
@@ -60,4 +60,4 @@
 </template>
 
 <script src="./app.js"></script>
-<style src="./app.less"></style>
+<style lang="less" src="./app.less"></style>
