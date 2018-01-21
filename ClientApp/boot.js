@@ -9,8 +9,8 @@ Vue.component("image-carousel", {
             <div class="image-carousel">
                 <img v-bind:src="image"/>
                 <div class="controls">
-                  <carousel-control></carousel-control>
-                  <carousel-control></carousel-control>
+                  <carousel-control @change-image="changeImage" dir="left"></carousel-control>
+                  <carousel-control @change-image="changeImage" dir="right"></carousel-control>
                 </div>
             </div>
             `,
@@ -23,7 +23,7 @@ Vue.component("image-carousel", {
       //   "images/listings/4/Image_4.jpg"
       // ],
       index: 0,
-      intervals: {
+      timers: {
         changeImage: ""
       }
     };
@@ -35,21 +35,37 @@ Vue.component("image-carousel", {
   },
   methods: {
     changeImage(interval) {
-      this.intervals.changeImage = setInterval(() => {
-        this.index++;
-      }, interval);
+      if (interval < 2) {
+        this.index +=
+          this.index === 0 ? (interval === 1 ? interval : 0) : interval;
+      } else {
+        this.timers.changeImage = setInterval(() => {
+          this.index++;
+        }, interval);
+      }
     }
   },
   mounted() {
     this.changeImage(5000);
   },
   beforeDestroy() {
-    clearInterval(this.intervals.changeImage);
+    clearInterval(this.timers.changeImage);
     console.log("Destroying...");
   },
   components: {
     "carousel-control": {
-      template: `<i class="image-carousel-control fa fa-2x fa-chevron-left"></i>`
+      template: `<i :class="classes" @click="clicked"></i>`,
+      props: ["dir"],
+      computed: {
+        classes() {
+          return "image-carousel-control fa fa-2x fa-chevron-" + this.dir;
+        }
+      },
+      methods: {
+        clicked() {
+          this.$emit("change-image", this.dir === "left" ? -1 : 1);
+        }
+      }
     }
   }
 });
