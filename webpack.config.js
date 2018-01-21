@@ -48,18 +48,24 @@ module.exports = env => {
               }
             ]
           },
-          // {
-          //   test: /\.css$/,
-          //   use: isDevBuild
-          //     ? ["style-loader", "css-loader"]
-          //     : ExtractTextPlugin.extract({
-          //         use: { loader: "css-loader", options: { minimize: true } }
-          //       })
-          // },
           {
-            test: /\.(less|css)$/,
-            use: extractLESS.extract(["css-loader", "less-loader"])
+            test: /\.css$/,
+            use: isDevBuild
+              ? ["style-loader", "css-loader"]
+              : ExtractTextPlugin.extract({
+                  use: { loader: "css-loader", options: { minimize: true } }
+                })
           },
+          {
+            test: /\.less$/,
+            loader: ExtractTextPlugin.extract(
+              "css-loader?sourceMap!less-loader"
+            )
+          },
+          // {
+          //   test: /\.less$/,
+          //   use: extractLESS.extract(["css-loader", "less-loader"])
+          // },
           {
             test: /.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
             use: {
@@ -94,7 +100,7 @@ module.exports = env => {
         // new CopyWebpackPlugin([
         //   { from: "./Images/listings", to: "images/listings" }
         // ]),
-        extractLESS,
+        //extractLESS,
         new CheckerPlugin(),
         new webpack.DefinePlugin({
           "process.env": {
