@@ -52,7 +52,6 @@
                 <button v-on:click="modalOpen = false" class="modal-close"> &times; </button>
                 <div class="modal-content">
                     <image-carousel :images="Images"></image-carousel>
-                    <!-- <img :src="headerImage" /> -->
                 </div>
             </div>
         </div>
