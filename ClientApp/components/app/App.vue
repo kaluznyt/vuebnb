@@ -1,15 +1,8 @@
 <template>
     <div>
-        <div id="toolbar">
-            <img class="icon" :src="logo">
-            <h1>vuebnb</h1>
-        </div>
-        <div id="app">
-            <div class="header">
-                <div class="header-img" v-on:click="modalOpen=true" v-bind:style="{ 'background-image': 'url('+ headerImage+')'}">
-                    <button class="view-photos">View Photos</button>
-                </div>
-            </div>
+        <toolbar :icon="logo"></toolbar>
+        <div>
+            <page-header :image="headerImage" @open-image-viewer="modalOpen=true"></page-header>
             <div class="container">
                 <div class="heading">
                     <h1>{{title}}</h1>
@@ -58,5 +51,8 @@
     </div>
 </template>
 
-<script src="./app.js"></script>
-<style lang="less" src="./app.less"></style>
+<script src="./app.js">
+</script>
+<style lang="less" src="./app.less">
+
+</style>

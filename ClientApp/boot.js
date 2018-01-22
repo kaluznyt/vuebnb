@@ -1,5 +1,5 @@
 import Vue from "vue";
-import ImageCarousel from './components/ImageCarousel.vue';
+import ImageCarousel from "./components/image-carousel/ImageCarousel.vue";
 
 import fav from "../wwwroot/Images/favicon.ico";
 

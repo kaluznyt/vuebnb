@@ -16,7 +16,10 @@ export default {
   props: ["images"],
   data() {
     return {
-      index: 0
+      index: 0,
+      timers: {
+        changeImage: ""
+      }
     };
   },
   computed: {
@@ -48,6 +51,20 @@ export default {
 };
 </script>
 
- <style>
+ <style lang="less">
+.image-carousel {
+  height: 100%;
+  margin-top: -12vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
+  .controls {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+}
 </style>
