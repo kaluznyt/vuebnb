@@ -1,7 +1,7 @@
   <template>
   <div id="modal" :class="{ show : modalOpen }">
     <button @click="modalOpen=false" class="modal-close"> &times; </button>
-    <div class="modal-content">
+                <div class="modal-content">
       <slot></slot>
     </div>
   </div>
@@ -35,7 +35,7 @@ export default {
     document.addEventListener("keyup", this.escapeKeyListener);
   },
   destroyed() {
-     document.removeEventListener("keyup", this.escapeKeyListener);
+    document.removeEventListener("keyup", this.escapeKeyListener);
   }
 };
 </script>

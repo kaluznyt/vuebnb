@@ -15,13 +15,13 @@
                     </div>
                     <div class="lists">
                         <feature-list title="Amenities">
-                                <div class="list-item" v-for="amenity in amenities">
+                                <div class="list-item" v-for="amenity in amenities" :key="amenity.title">
                                     <i class="fa fa-lg" v-bind:class="amenity.icon"></i>
                                     <span>{{amenity.title}}</span>
                                 </div>
                         </feature-list>
                         <feature-list title="Prices">
-                                    <div class="list-item" v-for="price in prices">
+                                    <div class="list-item" v-for="price in prices" :key="price.title">
                                         {{ price.title }}:
                                         <strong> {{ price.value }}</strong>
                                     </div>

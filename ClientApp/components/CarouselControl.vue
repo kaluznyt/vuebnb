@@ -1,5 +1,5 @@
 <template>
-     <i :class="classes" @click="clicked"></i>
+  <i :class="classes" @click="clicked"></i>
 </template>
 <script>
 export default {
@@ -23,12 +23,14 @@ export default {
   color: #ffffff;
   opacity: 0.85;
 }
+
 .image-carousel-control {
   padding: 1rem;
   color: #fff;
   opacity: 0.55;
   font-size: 8rem;
 }
+
 @media (min-width: 744px) {
   .carousel-control {
     font-size: 3rem;
