@@ -14,30 +14,18 @@
                         <button class="more" v-on:click="contracted=!contracted"> {{ contracted ? "+ More" : "- Less" }}</button>
                     </div>
                     <div class="lists">
-                        <hr>
-                        <div class="amenities list">
-                            <div class="title">
-                                <strong>Amenities</strong>
-                            </div>
-                            <div class="content">
+                        <feature-list title="Amenities">
                                 <div class="list-item" v-for="amenity in amenities">
                                     <i class="fa fa-lg" v-bind:class="amenity.icon"></i>
                                     <span>{{amenity.title}}</span>
                                 </div>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="prices list">
-                            <div class="title">
-                                <strong>Prices</strong>
-                                <div class="content">
+                        </feature-list>
+                        <feature-list title="Prices">
                                     <div class="list-item" v-for="price in prices">
                                         {{ price.title }}:
                                         <strong> {{ price.value }}</strong>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
+                        </feature-list>
                     </div>
                 </div>
             </div>

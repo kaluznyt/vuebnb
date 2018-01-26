@@ -1,5 +1,5 @@
 <template>
-  <i :class="classes" @click="clicked"></i>
+     <i :class="classes" @click="clicked"></i>
 </template>
 <script>
 export default {
