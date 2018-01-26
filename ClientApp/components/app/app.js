@@ -1,9 +1,9 @@
 import Vue from "vue";
 import logo from "../../../wwwroot/Images/logo.png";
-import Toolbar from "./Toolbar.vue";
-import PageHeader from "./PageHeader.vue";
-import Modal from "../modal/Modal.vue";
-import ImageCarousel from "../image-carousel/ImageCarousel.vue";
+import Toolbar from "../Toolbar.vue";
+import PageHeader from "../PageHeader.vue";
+import Modal from "../Modal.vue";
+import ImageCarousel from "../ImageCarousel.vue";
 
 const model = window.vuebnbListingModel;
 

@@ -1,7 +1,7 @@
 <template>
   <div class="header">
-    <div class="header-img" @click="clicked" :style="{ 'background-image': 'url('+ image+')'}">
-      <button class="view-photos">View Photos</button>
+    <div class="header-img" :style="headerImageStyle" @click="$emit('header-clicked')">
+      <button class="view-photos ">View Photos</button>
     </div>
   </div>
 </template>
@@ -9,11 +9,18 @@
 export default {
   name: "PageHeader",
   props: ["image"],
-  methods: {
-    clicked() {
-      this.$emit("open-image-viewer");
+  computed: {
+    headerImageStyle() {
+      return {
+        "background-image": `url(${this.image})`
+      };
     }
   }
+  // methods: {
+  //   clicked() {
+  //     this.$emit("open-image-viewer");
+  //   }
+  // }
 };
 </script>
 <style lang="less">
