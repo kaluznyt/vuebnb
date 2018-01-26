@@ -1,12 +1,12 @@
 import Vue from "vue";
 import logo from "../../../wwwroot/Images/logo.png";
-import ImageCarousel from "../image-carousel/ImageCarousel.vue";
 import Toolbar from "./Toolbar.vue";
 import PageHeader from "./PageHeader.vue";
+import Modal from "../modal/Modal.vue";
 
 const model = window.vuebnbListingModel;
 
-const data = function() {
+const data = function () {
   return Object.assign(model, {
     logo: logo,
     contracted: true,
@@ -19,6 +19,6 @@ export default {
   components: {
     Toolbar,
     PageHeader,
-    ImageCarousel
+    Modal
   }
 };
