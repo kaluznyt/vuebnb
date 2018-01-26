@@ -1,25 +1,98 @@
   <template>
-  <div id="modal" :class="{ show : showModal }">
-    <button @click="clicked" class="modal-close"> &times; </button>
+  <div id="modal" :class="{ show : modalOpen }">
+    <button @click="modalOpen=false" class="modal-close"> &times; </button>
     <div class="modal-content">
-      <image-carousel :images="images"></image-carousel>
+      <slot></slot>
     </div>
   </div>
 </template>
 <script>
-import ImageCarousel from "../image-carousel/ImageCarousel.vue";
-
 export default {
   name: "Modal",
-  props: ["images", "showModal"],
+  data() {
+    return {
+      modalOpen: false
+    };
+  },
   methods: {
-    clicked() {
-      this.$emit("close-image-viewer");
+    escapeKeyListener(evt) {
+      if (evt.keyCode === 27 && this.modalOpen) {
+        this.modalOpen = false;
+      }
     }
   },
-  components: { ImageCarousel }
+  watch: {
+    modalOpen() {
+      var className = "modal-open";
+      if (this.modalOpen) {
+        document.body.classList.add(className);
+      } else {
+        document.body.classList.remove(className);
+      }
+    }
+  },
+  created() {
+    document.addEventListener("keyup", this.escapeKeyListener);
+  },
+  destroyed() {
+     document.removeEventListener("keyup", this.escapeKeyListener);
+  }
 };
 </script>
-<style>
+<style lang="less">
+#modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2000;
+  background-color: rgba(0, 0, 0, 0.85);
+}
 
+#modal.show {
+  display: block;
+}
+
+.modal-content {
+  background-color: transparent;
+  height: 100%;
+  max-width: 105vh;
+  padding-top: 12vh;
+  margin: 0 auto;
+  position: relative;
+  width: 100%;
+  max-width: 105vh;
+  padding-top: 12vh;
+  margin: 0 auto;
+  position: relative;
+
+  img {
+    max-width: 100%;
+  }
+}
+
+body.modal-open {
+  overflow: hidden;
+  position: fixed;
+}
+
+.modal-close {
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 0px 28px 8px;
+  font-size: 4em;
+  width: auto;
+  height: auto;
+  background: transparent;
+  border: 0;
+  outline: none;
+  color: #ffffff;
+  z-index: 1000;
+  font-weight: 100;
+  line-height: 1;
+}
 </style>

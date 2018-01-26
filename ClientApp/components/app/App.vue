@@ -2,7 +2,7 @@
     <div>
         <toolbar :icon="logo"></toolbar>
         <div>
-            <page-header :image="headerImage" @open-image-viewer="modalOpen=true"></page-header>
+            <page-header :image="headerImage" @open-image-viewer="openModal()"></page-header>
             <div class="container">
                 <div class="heading">
                     <h1>{{title}}</h1>
@@ -41,7 +41,10 @@
                     </div>
                 </div>
             </div>
-            <modal :images="Images" :showModal="modalOpen" @close-image-viewer="modalOpen=false"></modal>
+            <!-- <modal :images="Images" :showModal="modalOpen" @close-image-viewer="modalOpen=false"></modal> -->
+            <modal ref="imagemodal">
+                <image-carousel :images="Images"></image-carousel>
+            </modal>
         </div>
     </div>
 </template>
