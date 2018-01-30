@@ -5,13 +5,13 @@ import PageHeader from "../PageHeader.vue";
 import Modal from "../Modal.vue";
 import ImageCarousel from "../ImageCarousel.vue";
 import FeatureList from "../FeatureList.vue";
+import ExpandableText from "../ExpandableText.vue";
 
 const model = window.vuebnbListingModel;
 
-const data = function() {
+const data = function () {
   return Object.assign(model, {
-    logo: logo,
-    contracted: true
+    logo: logo
   });
 };
 
@@ -27,6 +27,7 @@ export default {
     PageHeader,
     Modal,
     ImageCarousel,
-    FeatureList
+    FeatureList,
+    ExpandableText
   }
 };

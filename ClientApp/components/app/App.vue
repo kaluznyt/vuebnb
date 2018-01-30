@@ -10,8 +10,11 @@
                     <hr>
                     <div class="about">
                         <h3>About this listing</h3>
-                        <p v-bind:class="{contracted: contracted}">{{about}}</p>
-                        <button class="more" v-on:click="contracted=!contracted"> {{ contracted ? "+ More" : "- Less" }}</button>
+                        <expandable-text>
+                            {{about}}
+                        </expandable-text>
+                        <!-- <p v-bind:class="{contracted: contracted}">{{about}}</p>
+                        <button class="more" v-on:click="contracted=!contracted"> {{ contracted ? "+ More" : "- Less" }}</button> -->
                     </div>
                     <div class="lists">
                         <feature-list title="Amenities" :items="amenities">
@@ -22,8 +25,9 @@
                         </feature-list>
                         <feature-list title="Prices" :items="prices">
                             <template slot-scope="price">
-                                {{ price.title }}: <strong> {{ price.value }}</strong>
-                            </template> 
+                                {{ price.title }}:
+                                <strong> {{ price.value }}</strong>
+                            </template>
                         </feature-list>
                     </div>
                 </div>
