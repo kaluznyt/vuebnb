@@ -14,17 +14,16 @@
                         <button class="more" v-on:click="contracted=!contracted"> {{ contracted ? "+ More" : "- Less" }}</button>
                     </div>
                     <div class="lists">
-                        <feature-list title="Amenities">
-                                <div class="list-item" v-for="amenity in amenities" :key="amenity.title">
-                                    <i class="fa fa-lg" v-bind:class="amenity.icon"></i>
-                                    <span>{{amenity.title}}</span>
-                                </div>
+                        <feature-list title="Amenities" :items="amenities">
+                            <template slot-scope="amenity">
+                                <i class="fa fa-lg" :class="amenity.icon"></i>
+                                <span>{{ amenity.title }}</span>
+                            </template>
                         </feature-list>
-                        <feature-list title="Prices">
-                                    <div class="list-item" v-for="price in prices" :key="price.title">
-                                        {{ price.title }}:
-                                        <strong> {{ price.value }}</strong>
-                                    </div>
+                        <feature-list title="Prices" :items="prices">
+                            <template slot-scope="price">
+                                {{ price.title }}: <strong> {{ price.value }}</strong>
+                            </template> 
                         </feature-list>
                     </div>
                 </div>
