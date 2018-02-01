@@ -16,11 +16,6 @@ export default {
       };
     }
   }
-  // methods: {
-  //   clicked() {
-  //     this.$emit("open-image-viewer");
-  //   }
-  // }
 };
 </script>
 <style lang="less">

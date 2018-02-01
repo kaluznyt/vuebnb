@@ -13,8 +13,6 @@
                         <expandable-text>
                             {{about}}
                         </expandable-text>
-                        <!-- <p v-bind:class="{contracted: contracted}">{{about}}</p>
-                        <button class="more" v-on:click="contracted=!contracted"> {{ contracted ? "+ More" : "- Less" }}</button> -->
                     </div>
                     <div class="lists">
                         <feature-list title="Amenities" :items="amenities">
@@ -39,8 +37,6 @@
     </div>
 </template>
 
-<script src="./app.js">
-</script>
-<style lang="less" src="./app.less">
+<script src="./app.js"></script>
 
-</style>
+<style lang="less" src="./app.less"></style>
