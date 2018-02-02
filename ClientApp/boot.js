@@ -5,9 +5,11 @@ import fav from "../wwwroot/Images/favicon.ico";
 import "font-awesome-webpack";
 import "opensans-npm-webfont";
 
-import App from "./components/app/app.vue";
+import ListingPage from "./components/ListingPage/ListingPage.vue";
+import router from './router';
 
 const app = new Vue({
   el: "#app",
-  render: app => app(App)
+  render: app => app(ListingPage),
+  router
 });

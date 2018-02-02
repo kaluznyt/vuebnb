@@ -37,6 +37,6 @@
     </div>
 </template>
 
-<script src="./app.js"></script>
+<script src="./ListingPage.js"></script>
 
-<style lang="less" src="./app.less"></style>
+<style lang="less" src="./ListingPage.less"></style>
