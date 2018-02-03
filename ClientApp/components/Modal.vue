@@ -1,7 +1,7 @@
   <template>
   <div id="modal" :class="{ show : modalOpen }">
     <button @click="modalOpen=false" class="modal-close"> &times; </button>
-                <div class="modal-content">
+    <div class="modal-content">
       <slot></slot>
     </div>
   </div>
@@ -57,25 +57,15 @@ export default {
 
 .modal-content {
   background-color: transparent;
-  height: 100%;
   max-width: 105vh;
-  padding-top: 12vh;
-  margin: 0 auto;
   position: relative;
-  width: 100%;
-  max-width: 105vh;
-  padding-top: 12vh;
-  margin: 0 auto;
-  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 25vh;
 
   img {
     max-width: 100%;
   }
-}
-
-body.modal-open {
-  overflow: hidden;
-  position: fixed;
 }
 
 .modal-close {
