@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <div class="header-img" :style="headerImageStyle" @click="$emit('header-clicked')">
-      <button class="view-photos ">View Photos</button>
+      <button class="view-photos">View Photos</button>
     </div>
   </div>
 </template>
@@ -32,6 +32,23 @@ export default {
     height: 100%;
     cursor: pointer;
     position: relative;
+
+    button {
+      font-size: 14px;
+      padding: 7px 18px;
+      color: #484848;
+      line-height: 1.43;
+      background: #ffffff;
+      font-weight: bold;
+      border-radius: 4px;
+      border: 1px solid #c4c4c4;
+
+      &.view-photos {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+      }
+    }
   }
 }
 </style>

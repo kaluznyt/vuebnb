@@ -1,6 +1,5 @@
 <template>
     <div>
-        <toolbar :icon="logo"></toolbar>
         <div>
             <page-header :image="headerImage" @header-clicked="openModal"></page-header>
             <div class="container">

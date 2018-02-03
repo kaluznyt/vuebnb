@@ -1,6 +1,3 @@
-import Vue from "vue";
-import logo from "../../../wwwroot/Images/logo.png";
-import Toolbar from "../Toolbar.vue";
 import PageHeader from "../PageHeader.vue";
 import Modal from "../Modal.vue";
 import ImageCarousel from "../ImageCarousel.vue";
@@ -10,12 +7,11 @@ import ExpandableText from "../ExpandableText.vue";
 const model = window.vuebnbListingModel;
 
 const data = function () {
-  return Object.assign(model, {
-    logo: logo
-  });
+  return model;
 };
 
 export default {
+  name: 'ListingPage',
   data: data,
   methods: {
     openModal() {
@@ -23,7 +19,6 @@ export default {
     }
   },
   components: {
-    Toolbar,
     PageHeader,
     Modal,
     ImageCarousel,

@@ -1,13 +1,19 @@
 <template>
-    <div id="toolbar">
-        <img class="icon" :src="icon">
-        <h1>vuebnb</h1>
-    </div>
+  <div id="toolbar">
+    <img class="icon" :src="logo">
+    <h1>vuebnb</h1>
+  </div>
 </template>
 <script>
+import logo from "../../wwwroot/Images/logo.png";
+
 export default {
   name: "Toolbar",
-  props: ["icon"]
+  data() {
+    return {
+      logo: logo
+    };
+  }
 };
 </script>
 <style lang="less">
@@ -19,12 +25,14 @@ export default {
 }
 
 #toolbar .icon {
-  height: 46px;
+  height: 5rem;
+  width: 5rem;
   margin: 5px;
   display: inline-block;
 }
 
 #toolbar h1 {
+  font-family: "Open Sans", sans-serif;
   color: #4fc08d;
   display: inline-block;
   font-size: 28px;

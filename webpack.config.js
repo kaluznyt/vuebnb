@@ -22,7 +22,7 @@ module.exports = env => {
       }
     },
     entry: {
-      main: "./ClientApp/boot.js"
+      main: "./ClientApp/app.js"
     },
     module: {
       rules: [{
@@ -30,16 +30,6 @@ module.exports = env => {
           include: /ClientApp/,
           use: {
             loader: "vue-loader",
-            // options: {
-            //   loaders: {
-            //     js: {
-            //       loader: "awesome-typescript-loader",
-            //       options: {
-            //         silent: true
-            //       }
-            //     }
-            //   }
-            // }
           }
         },
         {
@@ -69,10 +59,6 @@ module.exports = env => {
             "css-loader?sourceMap!less-loader"
           )
         },
-        // {
-        //   test: /\.less$/,
-        //   use: extractLESS.extract(["css-loader", "less-loader"])
-        // },
         {
           test: /.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
           use: {
@@ -108,10 +94,6 @@ module.exports = env => {
       publicPath: "dist/"
     },
     plugins: [
-      // new CopyWebpackPlugin([
-      //   { from: "./Images/listings", to: "images/listings" }
-      // ]),
-      //extractLESS,
       new CheckerPlugin(),
       new webpack.DefinePlugin({
         "process.env": {
