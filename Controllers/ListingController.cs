@@ -37,7 +37,6 @@ namespace vuebnb.Controllers {
             }
 
             return View (listing);
-            //return Ok(listing);
         }
     }
 }

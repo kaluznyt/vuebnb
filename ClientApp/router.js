@@ -3,12 +3,19 @@ import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
 import ListingPage from './components/ListingPage/ListingPage.vue';
+import HomePage from './components/Homepage.vue';
 
 export default new VueRouter({
     mode: 'history',
     routes: [{
-        path: '/listing/:listing',
-        component: ListingPage,
-        name: 'listing'
-    }]
+            path: '/',
+            component: HomePage,
+            name: 'home'
+        },
+        {
+            path: '/listing/:listing',
+            component: ListingPage,
+            name: 'listing'
+        }
+    ]
 });

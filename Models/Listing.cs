@@ -101,6 +101,12 @@ namespace vuebnb.Models {
             }
         }
 
+        public string Thumbnail {
+            get {
+                return $"images/listings/{this.Id}/Image_1_thumb.jpg";
+            }
+        }
+
         public IEnumerable<string> Images {
             get {
                 var i = 0;
@@ -110,15 +116,5 @@ namespace vuebnb.Models {
                 }
             }
         }
-    }
-
-    public class Amenity {
-        public string title { get; set; }
-        public string icon { get; set; }
-    }
-
-    public class Price {
-        public string title { get; set; }
-        public string value { get; set; }
     }
 }
