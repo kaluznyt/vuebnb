@@ -20,7 +20,13 @@ namespace vuebnb.Controllers {
                 return BadRequest (ModelState);
             }
 
-            var listing = _context.Listings.Select (l => new { l.Title, l.Id, l.Address, l.PricePerNight, l.Thumbnail });
+            var listing = _context.Listings.Select (l => new {
+                title = l.Title,
+                    id = l.Id,
+                    address = l.Address,
+                    price_per_night = l.PricePerNight,
+                    thumb = l.Thumbnail
+            });
 
             if (listing == null) {
                 return NotFound ();
