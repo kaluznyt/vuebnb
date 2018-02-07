@@ -61,7 +61,8 @@ export default {
   position: relative;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 25vh;
+  top: 50%;
+  transform: translateY(-50%);
 
   img {
     max-width: 100%;

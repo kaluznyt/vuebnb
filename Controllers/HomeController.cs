@@ -1,10 +1,10 @@
 using System;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using vuebnb.Models;
 
 namespace vuebnb.Controllers {
@@ -32,7 +32,14 @@ namespace vuebnb.Controllers {
                 return NotFound ();
             }
 
-            return View (listing);
+            var viewModel = new GenericViewModel<object> {
+                Data = listing,
+                Metadata = new Metadata {
+                Path = "/"
+                }
+            };
+
+            return View (viewModel);
         }
 
         public IActionResult Error () {

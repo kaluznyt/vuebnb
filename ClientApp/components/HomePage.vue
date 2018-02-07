@@ -1,28 +1,36 @@
 <template>
-    <div class="home-container">
-        <div v-for="(group, country) in listing_groups" class="listing-summary-group">
-            <h1>Places in {{ country }}</h1>
-            <div class="listing-summaries">
-                <listing-summary v-for="listing in group" :key="listing.id" :listing="listing">
+  <div class="home-container">
+    <div v-for="(group, country) in listing_groups" class="listing-summary-group">
+      <h1>Places in {{ country }}</h1>
+      <div class="listing-summaries">
+        <listing-summary v-for="listing in group" :key="listing.id" :listing="listing">
 
-                </listing-summary>
-            </div>
-        </div>
+        </listing-summary>
+      </div>
     </div>
+  </div>
 </template>
 <script>
 import { groupByCountry } from "../js/helpers";
 import ListingSummary from "./ListingSummary.vue";
 
-let serverData = window.vuebnbHomePageModel;
-let listing_groups = groupByCountry(serverData);
-
 export default {
   data() {
-    return { listing_groups };
+    return { listing_groups: [] };
   },
   components: {
     ListingSummary
+  },
+  beforeRouteEnter(to, from, next) {
+    let serverData = window.vuebnbViewModel;
+
+    if (to.path === serverData.Metadata.Path) {
+      let listing_groups = groupByCountry(serverData.Data);
+      next(component => (component.listing_groups = listing_groups));
+    } else {
+      console.log("Need to get data with AJAX!");
+      next(false);
+    }
   }
 };
 </script>

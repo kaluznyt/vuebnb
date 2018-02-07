@@ -1,9 +1,11 @@
+@model vuebnb.Models.GenericViewModel<object>
+
 @{
     ViewData["Title"] = "Home Page";
 }
 
 <script>
-   window.vuebnbHomePageModel =  @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model) as string)
+   window.vuebnbViewModel =  @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model) as string)
 </script>
 
 <div id='app'>Loading...</div>

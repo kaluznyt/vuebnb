@@ -24,7 +24,8 @@ export default {
   },
   computed: {
     image() {
-      return this.images[this.index % this.images.length];
+      if (this.images) return this.images[this.index % this.images.length];
+      else null;
     }
   },
   methods: {
@@ -54,7 +55,6 @@ export default {
  <style lang="less">
 .image-carousel {
   height: 100%;
-  margin-top: -12vh;
   position: relative;
   display: flex;
   align-items: center;
