@@ -9,8 +9,6 @@ using vuebnb.Models;
 using vuebnb.Repositories;
 
 namespace vuebnb.Controllers {
-    [Produces ("application/json")]
-    [Route ("/Listing")]
     public class ListingController : Controller {
         private readonly IRepository<Listing> repository;
 
@@ -19,13 +17,41 @@ namespace vuebnb.Controllers {
         }
 
         // GET: api/Listings
-        [HttpGet]
+        [HttpGet ("/listing/api/all")]
         public async Task<IEnumerable<Listing>> GetListings () {
             return await repository.Get ();
         }
 
+        [HttpGet ("/listing/api/summaries")]
+        public async Task<IEnumerable<object>> GetListingSummariesApi () {
+            return await ((ListingRepository) repository).GetListingSummaries ();
+        }
+
+        [HttpGet ("")]
+        [HttpGet ("/listing/summaries")]
+        public async Task<IActionResult> GetListingSummaries () {
+            if (!ModelState.IsValid) {
+                return BadRequest (ModelState);
+            }
+
+            var listing = await ((ListingRepository) repository).GetListingSummaries ();
+
+            if (listing == null) {
+                return NotFound ();
+            }
+
+            var viewModel = new GenericViewModel<object> {
+                Data = listing,
+                Metadata = new Metadata {
+                Path = "/"
+                }
+            };
+
+            return View ("~/Views/Home/Index.cshtml", viewModel);
+        }
+
         // GET: Listing/5
-        [HttpGet ("{id}")]
+        [HttpGet ("/listing/{id}")]
         public async Task<IActionResult> GetListing ([FromRoute] int id) {
             if (!ModelState.IsValid) {
                 return BadRequest (ModelState);
@@ -44,11 +70,12 @@ namespace vuebnb.Controllers {
                 }
             };
 
+            //return View (viewModel);
             return View (viewModel);
         }
 
-        public async Task<IActionResult> GetListingSummaries () {
-            return Ok ();
-        }
+        // public async Task<IActionResult> GetListingSummaries () {
+        //     return Ok ();
+        // }
     }
 }

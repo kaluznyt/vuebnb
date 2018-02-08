@@ -13,15 +13,14 @@ namespace vuebnb.Repositories {
         }
 
         public async Task<IEnumerable<object>> GetListingSummaries () {
-            var listing = context.Listings.Select (l => new {
+
+            return await context.Listings.Select (l => new {
                 title = l.Title,
                     id = l.Id,
                     address = l.Address,
                     price_per_night = l.PricePerNight,
                     thumb = l.Thumbnail
-            });
-
-            return listing;
+            }).ToListAsync ();
         }
 
         public async Task Delete (int Id) {

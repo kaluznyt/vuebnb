@@ -10,31 +10,11 @@ using vuebnb.Repositories;
 
 namespace vuebnb.Controllers {
     public class HomeController : Controller {
-        private readonly ListingRepository repository;
+        //private readonly ListingRepository repository;
 
-        public HomeController (ListingRepository repository) {
-            this.repository = repository;
-        }
-        public IActionResult Index () {
-            if (!ModelState.IsValid) {
-                return BadRequest (ModelState);
-            }
-
-            var listing = repository.GetListingSummaries ();
-
-            if (listing == null) {
-                return NotFound ();
-            }
-
-            var viewModel = new GenericViewModel<object> {
-                Data = listing,
-                Metadata = new Metadata {
-                Path = "/"
-                }
-            };
-
-            return View (viewModel);
-        }
+        // public HomeController (ListingRepository repository) {
+        //     this.repository = repository;
+        // }
 
         public IActionResult Error () {
             ViewData["RequestId"] = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
