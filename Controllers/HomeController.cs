@@ -6,27 +6,21 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using vuebnb.Models;
+using vuebnb.Repositories;
 
 namespace vuebnb.Controllers {
     public class HomeController : Controller {
-        private readonly ListingContext _context;
+        private readonly ListingRepository repository;
 
-        public HomeController (ListingContext context) {
-            this._context = context;
-
+        public HomeController (ListingRepository repository) {
+            this.repository = repository;
         }
         public IActionResult Index () {
             if (!ModelState.IsValid) {
                 return BadRequest (ModelState);
             }
 
-            var listing = _context.Listings.Select (l => new {
-                title = l.Title,
-                    id = l.Id,
-                    address = l.Address,
-                    price_per_night = l.PricePerNight,
-                    thumb = l.Thumbnail
-            });
+            var listing = repository.GetListingSummaries ();
 
             if (listing == null) {
                 return NotFound ();

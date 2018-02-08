@@ -1,14 +1,15 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using vuebnb.Models;
+using vuebnb.Repositories;
 
 namespace vuebnb {
     public class Startup {
@@ -22,6 +23,8 @@ namespace vuebnb {
         public void ConfigureServices (IServiceCollection services) {
             services.AddMvc ();
 
+            services.AddTransient<IRepository<Listing>, ListingRepository> ();
+            services.AddTransient<ListingRepository, ListingRepository> ();
             services.AddDbContext<ListingContext> (options => options.UseSqlServer ("Server=(local);Database=vuebnb;Trusted_Connection=True;MultipleActiveResultSets=True"));
         }
 

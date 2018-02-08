@@ -6,21 +6,22 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using vuebnb.Models;
+using vuebnb.Repositories;
 
 namespace vuebnb.Controllers {
     [Produces ("application/json")]
     [Route ("/Listing")]
     public class ListingController : Controller {
-        private readonly ListingContext _context;
+        private readonly IRepository<Listing> repository;
 
-        public ListingController (ListingContext context) {
-            _context = context;
+        public ListingController (IRepository<Listing> repository) {
+            this.repository = repository;
         }
 
         // GET: api/Listings
         [HttpGet]
-        public IEnumerable<Listing> GetListings () {
-            return _context.Listings;
+        public async Task<IEnumerable<Listing>> GetListings () {
+            return await repository.Get ();
         }
 
         // GET: Listing/5
@@ -30,7 +31,7 @@ namespace vuebnb.Controllers {
                 return BadRequest (ModelState);
             }
 
-            var listing = await _context.Listings.SingleOrDefaultAsync (m => m.Id == id);
+            var listing = await repository.GetByID (id);
 
             if (listing == null) {
                 return NotFound ();
@@ -44,6 +45,10 @@ namespace vuebnb.Controllers {
             };
 
             return View (viewModel);
+        }
+
+        public async Task<IActionResult> GetListingSummaries () {
+            return Ok ();
         }
     }
 }

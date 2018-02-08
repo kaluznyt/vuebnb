@@ -4,12 +4,6 @@ import ImageCarousel from "../ImageCarousel.vue";
 import FeatureList from "../FeatureList.vue";
 import ExpandableText from "../ExpandableText.vue";
 
-//const model = window.vuebnbViewModel;
-
-// const data = function () {
-//   return model.Data;
-// };
-
 export default {
   name: 'ListingPage',
   data() {
@@ -33,8 +27,8 @@ export default {
     let serverData = window.vuebnbViewModel;
 
     if (to.path.indexOf(serverData.Metadata.Path) > -1) {
-      next(component => {
-        component.listing = serverData.Data;
+      next(vm => {
+        vm.listing = serverData.Data
       });
     } else {
       console.log("Need to get data with AJAX!");
