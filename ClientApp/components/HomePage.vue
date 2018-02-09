@@ -13,6 +13,7 @@
 <script>
 import { groupByCountry } from "../js/helpers";
 import ListingSummary from "./ListingSummary.vue";
+import axios from "axios";
 
 export default {
   data() {
@@ -24,12 +25,23 @@ export default {
   beforeRouteEnter(to, from, next) {
     let serverData = window.vuebnbViewModel;
 
-    if (to.path === serverData.Metadata.Path) {
-      let listing_groups = groupByCountry(serverData.Data);
+    function passData(data) {
+      let listing_groups = groupByCountry(data);
       next(component => (component.listing_groups = listing_groups));
+    }
+
+    if (to.path === serverData.Metadata.Path) {
+      passData(serverData.Data);
     } else {
-      console.log("Need to get data with AJAX!");
-      next(false);
+      axios
+        .get("/listing/api/summaries")
+        .then(resp => {
+          passData(resp.data);
+        })
+        .catch(err => {
+          console.log(err);
+          next(false);
+        });
     }
   }
 };
