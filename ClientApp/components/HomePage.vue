@@ -14,36 +14,43 @@
 import { groupByCountry } from "../js/helpers";
 import ListingSummary from "./ListingSummary.vue";
 import axios from "axios";
+import routeMixin from "../js/route-mixin";
 
 export default {
+  mixins: [routeMixin],
   data() {
     return { listing_groups: [] };
   },
   components: {
     ListingSummary
   },
-  beforeRouteEnter(to, from, next) {
-    let serverData = window.vuebnbViewModel;
-
-    function passData(data) {
-      let listing_groups = groupByCountry(data);
-      next(component => (component.listing_groups = listing_groups));
-    }
-
-    if (to.path === serverData.Metadata.Path) {
-      passData(serverData.Data);
-    } else {
-      axios
-        .get("/listing/api/summaries")
-        .then(resp => {
-          passData(resp.data);
-        })
-        .catch(err => {
-          console.log(err);
-          next(false);
-        });
+  methods: {
+    assignData(listings) {
+      this.listing_groups = groupByCountry(listings);
     }
   }
+  // beforeRouteEnter(to, from, next) {
+  //   let serverData = window.vuebnbViewModel;
+
+  //   function passData(data) {
+  //     let listing_groups = groupByCountry(data);
+  //     next(component => (component.listing_groups = listing_groups));
+  //   }
+
+  //   if (to.path === serverData.Metadata.Path) {
+  //     passData(serverData.Data);
+  //   } else {
+  //     axios
+  //       .get("/listing/api/summaries")
+  //       .then(resp => {
+  //         passData(resp.data);
+  //       })
+  //       .catch(err => {
+  //         console.log(err);
+  //         next(false);
+  //       });
+  //   }
+  // }
 };
 </script>
 

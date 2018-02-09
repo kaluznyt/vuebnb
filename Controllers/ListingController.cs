@@ -16,13 +16,13 @@ namespace vuebnb.Controllers {
             this.repository = repository;
         }
 
-        // GET: api/Listings
-        [HttpGet ("/listing/api/all")]
-        public async Task<IEnumerable<Listing>> GetListings () {
+        [HttpGet ("/api/listing/all")]
+        public async Task<IEnumerable<Listing>> GetListingsApi () {
             return await repository.Get ();
         }
 
-        [HttpGet ("/listing/api/summaries")]
+        [HttpGet ("/api/")]
+        [HttpGet ("/api/listing/summaries")]
         public async Task<IEnumerable<object>> GetListingSummariesApi () {
             return await ((ListingRepository) repository).GetListingSummaries ();
         }
@@ -50,7 +50,11 @@ namespace vuebnb.Controllers {
             return View ("~/Views/Home/Index.cshtml", viewModel);
         }
 
-        // GET: Listing/5
+        [HttpGet ("/api/listing/{id}")]
+        public async Task<Listing> GetListingApi ([FromRoute] int id) {
+            return await repository.GetByID (id);
+        }
+
         [HttpGet ("/listing/{id}")]
         public async Task<IActionResult> GetListing ([FromRoute] int id) {
             if (!ModelState.IsValid) {
@@ -70,12 +74,7 @@ namespace vuebnb.Controllers {
                 }
             };
 
-            //return View (viewModel);
             return View (viewModel);
         }
-
-        // public async Task<IActionResult> GetListingSummaries () {
-        //     return Ok ();
-        // }
     }
 }
