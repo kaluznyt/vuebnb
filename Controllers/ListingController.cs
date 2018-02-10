@@ -10,9 +10,9 @@ using vuebnb.Repositories;
 
 namespace vuebnb.Controllers {
     public class ListingController : Controller {
-        private readonly IRepository<Listing> repository;
+        private readonly IListingRepository repository;
 
-        public ListingController (IRepository<Listing> repository) {
+        public ListingController (IListingRepository repository) {
             this.repository = repository;
         }
 
@@ -24,7 +24,7 @@ namespace vuebnb.Controllers {
         [HttpGet ("/api/")]
         [HttpGet ("/api/listing/summaries")]
         public async Task<IEnumerable<object>> GetListingSummariesApi () {
-            return await ((ListingRepository) repository).GetListingSummaries ();
+            return await repository.GetListingSummaries ();
         }
 
         [HttpGet ("")]
@@ -34,7 +34,7 @@ namespace vuebnb.Controllers {
                 return BadRequest (ModelState);
             }
 
-            var listing = await ((ListingRepository) repository).GetListingSummaries ();
+            var listing = await repository.GetListingSummaries ();
 
             if (listing == null) {
                 return NotFound ();

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using vuebnb.Models;
 
 namespace vuebnb.Repositories {
-    public class ListingRepository : IRepository<Listing> {
+    public class ListingRepository : IListingRepository {
 
         private ListingContext context;
         public ListingRepository (ListingContext context) {
@@ -33,24 +33,12 @@ namespace vuebnb.Repositories {
         }
 
         public async Task<IEnumerable<Listing>> Get () {
-            return context.Listings;
+            return await context.Listings.ToListAsync ();
         }
 
         public async Task<Listing> GetByID (int Id) {
             var listing = await context.Listings.SingleOrDefaultAsync (m => m.Id == Id);
             return listing;
-        }
-
-        public async Task Insert (Listing item) {
-            throw new System.NotImplementedException ();
-        }
-
-        public async Task Save () {
-            await this.context.SaveChangesAsync ();
-        }
-
-        public async Task Update (Listing item) {
-            throw new System.NotImplementedException ();
         }
     }
 }

@@ -33,17 +33,5 @@ export default {
     ImageCarousel,
     FeatureList,
     ExpandableText
-  } //,
-  // beforeRouteEnter(to, from, next) {
-  //   let serverData = window.vuebnbViewModel;
-
-  //   if (to.path.indexOf(serverData.Metadata.Path) > -1) {
-  //     next(vm => {
-  //       vm.listing = serverData.Data
-  //     });
-  //   } else {
-  //     console.log("Need to get data with AJAX!");
-  //     next(false);
-  //   }
-  // }
+  }
 };

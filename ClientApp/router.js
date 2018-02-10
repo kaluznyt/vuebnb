@@ -17,5 +17,13 @@ export default new VueRouter({
             component: ListingPage,
             name: 'listing'
         }
-    ]
+    ],
+    scrollBehavior(to, from, savedPosition) {
+        if (to.name === "listing")
+            return {
+                x: 0,
+                y: 0
+            }
+        else return savedPosition;
+    }
 });

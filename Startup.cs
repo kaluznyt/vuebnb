@@ -23,8 +23,7 @@ namespace vuebnb {
         public void ConfigureServices (IServiceCollection services) {
             services.AddMvc ();
 
-            services.AddTransient<IRepository<Listing>, ListingRepository> ();
-            services.AddTransient<ListingRepository, ListingRepository> ();
+            services.AddTransient<IListingRepository, ListingRepository> ();
             services.AddDbContext<ListingContext> (options => options.UseSqlServer ("Server=(local);Database=vuebnb;Trusted_Connection=True;MultipleActiveResultSets=True"));
         }
 
@@ -42,15 +41,6 @@ namespace vuebnb {
             app.UseStaticFiles ();
 
             app.UseMvc ();
-            // app.UseMvc (routes => {
-            //     routes.MapRoute (
-            //         name: "default",
-            //         template: "{controller=Home}/{action=Index}/{id?}");
-
-            //     routes.MapSpaFallbackRoute (
-            //         name: "spa-fallback",
-            //         defaults : new { controller = "Home", action = "Index" });
-            // });
         }
     }
 }
