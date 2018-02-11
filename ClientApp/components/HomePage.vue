@@ -36,20 +36,5 @@ export default {
     width: 1080px;
   }
 }
-.listing-summary-group {
-  padding-bottom: 20px;
-}
-.listing-summaries {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  overflow: hidden;
 
-  & > .listing-summary {
-    margin-right: 15px;
-  }
-  & > .listing-summary:last-child {
-    margin-right: 0;
-  }
-}
 </style>
