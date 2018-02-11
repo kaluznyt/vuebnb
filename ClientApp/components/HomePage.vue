@@ -1,18 +1,12 @@
 <template>
   <div class="home-container">
-    <div v-for="(group, country) in listing_groups" class="listing-summary-group">
-      <h1>Places in {{ country }}</h1>
-      <div class="listing-summaries">
-        <listing-summary v-for="listing in group" :key="listing.id" :listing="listing">
-
-        </listing-summary>
-      </div>
-    </div>
+    <listing-summary-group v-for="(group,country) in listing_groups" :key="country" :listings="group" :country="country" class="listing-summary-group">
+    </listing-summary-group>
   </div>
 </template>
 <script>
 import { groupByCountry } from "../js/helpers";
-import ListingSummary from "./ListingSummary.vue";
+import ListingSummaryGroup from "./ListingSummaryGroup.vue";
 import axios from "axios";
 import routeMixin from "../js/route-mixin";
 
@@ -21,36 +15,14 @@ export default {
   data() {
     return { listing_groups: [] };
   },
-  components: {
-    ListingSummary
-  },
   methods: {
     assignData(listings) {
       this.listing_groups = groupByCountry(listings);
     }
+  },
+  components: {
+    ListingSummaryGroup
   }
-  // beforeRouteEnter(to, from, next) {
-  //   let serverData = window.vuebnbViewModel;
-
-  //   function passData(data) {
-  //     let listing_groups = groupByCountry(data);
-  //     next(component => (component.listing_groups = listing_groups));
-  //   }
-
-  //   if (to.path === serverData.Metadata.Path) {
-  //     passData(serverData.Data);
-  //   } else {
-  //     axios
-  //       .get("/listing/api/summaries")
-  //       .then(resp => {
-  //         passData(resp.data);
-  //       })
-  //       .catch(err => {
-  //         console.log(err);
-  //         next(false);
-  //       });
-  //   }
-  // }
 };
 </script>
 
