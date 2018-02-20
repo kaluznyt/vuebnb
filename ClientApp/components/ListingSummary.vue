@@ -3,16 +3,22 @@
     <router-link :to="{ name: 'listing', params:{listing: listing.id}}">
       <div class="wrapper">
         <div class="thumbnail" :style="backgroundImageStyle"></div>
+
         <div class="info title">
           <span>{{ listing.price_per_night }}</span>
           <span>{{ listing.title }}</span>
         </div>
         <div class="info address">{{ listing.address }}</div>
       </div>
+
     </router-link>
+    <listing-save :id="listing.id"></listing-save>
+
   </div>
 </template>
 <script>
+import ListingSave from "./ListingSave.vue";
+
 export default {
   props: ["listing"],
   computed: {
@@ -21,12 +27,21 @@ export default {
         "background-image": `url("${this.listing.thumb}")`
       };
     }
-  }
+  },
+  components: { ListingSave }
 };
 </script>
 <style lang="less" scoped>
 .listing-summary {
   flex: 0 0 auto;
+  position: relative;
+
+  .listing-save {
+    @media (max-width: 400px) {
+      left: 15px;
+      right: auto;
+    }
+  }
 
   a {
     text-decoration: none;
