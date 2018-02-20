@@ -8,10 +8,13 @@ import "font-awesome-webpack";
 import "opensans-npm-webfont";
 
 import App from "./components/App.vue";
-import router from './router.js';
+
+import router from './js/router';
+import store from './js/store'
 
 var app = new Vue({
   el: "#app",
   render: app => app(App),
-  router
+  router,
+  store
 });
