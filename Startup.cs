@@ -1,13 +1,13 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using vuebnb.Models;
 using vuebnb.Repositories;
 
@@ -24,7 +24,11 @@ namespace vuebnb {
             services.AddMvc ();
 
             services.AddTransient<IListingRepository, ListingRepository> ();
-            services.AddDbContext<ListingContext> (options => options.UseSqlServer ("Server=(local);Database=vuebnb;Trusted_Connection=True;MultipleActiveResultSets=True"));
+            services.AddDbContext<ListingContext> (options => options.UseSqlServer ("Server=sqlserver; Database=vuebnb; User Id=sa; Password="));
+
+            var serviceProvider = services.BuildServiceProvider ();
+            var listingContext = serviceProvider.GetService<ListingContext> ();
+            ListingContext.SeedData (listingContext);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,6 +45,7 @@ namespace vuebnb {
             app.UseStaticFiles ();
 
             app.UseMvc ();
+
         }
     }
 }
