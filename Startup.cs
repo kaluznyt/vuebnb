@@ -24,7 +24,7 @@ namespace vuebnb {
             services.AddMvc ();
 
             services.AddTransient<IListingRepository, ListingRepository> ();
-            services.AddDbContext<ListingContext> (options => options.UseSqlServer ("Server=sqlserver; Database=vuebnb; User Id=sa; Password="));
+            services.AddDbContext<ListingContext> (options => options.UseSqlServer (Configuration["vuebnb:database:connection-string"]));
 
             var serviceProvider = services.BuildServiceProvider ();
             var listingContext = serviceProvider.GetService<ListingContext> ();
