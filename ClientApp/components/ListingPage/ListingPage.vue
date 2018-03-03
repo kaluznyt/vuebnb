@@ -1,7 +1,7 @@
 <template>
     <div>
         <div>
-            <page-header v-if="headerImage" :image="headerImage" @header-clicked="openModal"></page-header>
+            <page-header v-if="headerImage" :image="headerImage" @header-clicked="openModal" :id="id"></page-header>
             <div class="container">
                 <div class="heading">
                     <h1>{{ title }}</h1>
