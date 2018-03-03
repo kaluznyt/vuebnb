@@ -3,10 +3,10 @@ import Modal from "../Modal.vue";
 import ImageCarousel from "../ImageCarousel.vue";
 import FeatureList from "../FeatureList.vue";
 import ExpandableText from "../ExpandableText.vue";
-import routeMixin from '../../js/route-mixin'
+import routeMixin from "../../js/route-mixin";
 
 export default {
-  name: 'ListingPage',
+  name: "ListingPage",
   mixins: [routeMixin],
   data() {
     return {
@@ -16,7 +16,8 @@ export default {
       address: null,
       amenities: [],
       prices: [],
-      images: []
+      images: [],
+      id: null
     };
   },
   methods: {
